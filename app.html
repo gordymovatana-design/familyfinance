@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FamilyFinance - Учет семейных финансов</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Auth Section -->
+        <div id="auth-section" class="auth-section">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h1 class="app-title">
+                        <i class="fas fa-piggy-bank"></i>
+                        FamilyFinance
+                    </h1>
+                    <p class="app-subtitle">Управление семейным бюджетом</p>
+                    
+                    <div class="auth-options">
+                        <div class="auth-option-card" id="personal-auth-btn">
+                            <div class="auth-option-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3>Личный кабинет</h3>
+                            <p>Войдите в свой персональный аккаунт</p>
+                        </div>
+                        
+                        <div class="auth-option-card" id="family-auth-btn">
+                            <div class="auth-option-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Семейный доступ</h3>
+                            <p>Войдите в семью для совместного управления</p>
+                        </div>
+
+                        <div class="auth-option-card" id="demo-auth-btn">
+                            <div class="auth-option-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <h3>Демо-режим</h3>
+                            <p>Попробуйте приложение без регистрации</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App Section -->
+        <div id="app-section" class="app-section hidden">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-content">
+                    <div class="header-brand">
+                        <button class="sidebar-toggle" id="sidebar-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>
+                            <i class="fas fa-piggy-bank"></i>
+                            FamilyFinance
+                        </h1>
+                    </div>
+                    <div class="header-actions">
+                        <div class="family-info hidden" id="family-info">
+                            <i class="fas fa-users"></i>
+                            <span id="family-name-display"></span>
+                        </div>
+                        <span id="user-name" class="user-name"></span>
+                        <div class="header-buttons">
+                            <button id="switch-family-btn" class="btn btn-outline btn-sm">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span class="btn-text">Сменить семью</span>
+                            </button>
+                            <button id="logout-btn" class="btn btn-outline">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="btn-text">Выйти</span>
+                            </button>
+                            <button id="delete-account-btn" class="btn btn-outline btn-danger">
+                                <i class="fas fa-trash"></i>
+                                <span class="btn-text">Удалить</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Navigation -->
+            <nav class="sidebar" id="sidebar">
+                <div class="nav-items">
+                    <button class="nav-item active" data-page="dashboard">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Обзор</span>
+                    </button>
+                    <button class="nav-item" data-page="transactions">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Транзакции</span>
+                    </button>
+                    <button class="nav-item" data-page="accounts">
+                        <i class="fas fa-wallet"></i>
+                        <span>Счета</span>
+                    </button>
+                    <button class="nav-item" data-page="categories">
+                        <i class="fas fa-tags"></i>
+                        <span>Категории</span>
+                    </button>
+                    <button class="nav-item" data-page="budgets">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Бюджеты</span>
+                    </button>
+                    <button class="nav-item" data-page="goals">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Цели</span>
+                    </button>
+                    <button class="nav-item" data-page="family">
+                        <i class="fas fa-users"></i>
+                        <span>Семья</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Dashboard Page -->
+                <div id="dashboard-page" class="page active">
+                    <div class="page-header">
+                        <h2>Финансовый обзор</h2>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" id="add-transaction-btn">
+                                <i class="fas fa-plus"></i>
+                                <span class="btn-text">Добавить операцию</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="stats-grid" id="dashboard-stats">
+                        <div class="stat-card income">
+                            <div class="stat-icon">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Доходы</h3>
+                                <span id="total-income" class="stat-amount">0 ₽</span>
+                            </div>
+                        </div>
+                        <div class="stat-card expense">
+                            <div class="stat-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Расходы</h3>
+                                <span id="total-expense" class="stat-amount">0 ₽</span>
+                            </div>
+                        </div>
+                        <div class="stat-card balance">
+                            <div class="stat-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Баланс</h3>
+                                <span id="total-balance" class="stat-amount">0 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Grid -->
+                    <div class="charts-grid" id="dashboard-charts">
+                        <div class="chart-card">
+                            <h3>Расходы по категориям</h3>
+                            <div id="expenses-chart" class="chart-container">
+                                <div class="expense-categories-grid" id="expense-categories-grid">
+                                    <!-- Categories will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Последние транзакции</h3>
+                            <div id="recent-transactions" class="transactions-list">
+                                <!-- Transactions will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transactions Page -->
+                <div id="transactions-page" class="page">
+                    <div class="page-header">
+                        <h2>Транзакции</h2>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" id="add-transaction-page-btn">
+                                <i class="fas fa-plus"></i>
+                                <span class="btn-text">Добавить транзакцию</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="transactions-content" id="transactions-content">
+                        <div class="filters">
+                            <select id="type-filter" class="filter-select">
+                                <option value="all">Все типы</option>
+                                <option value="income">Доходы</option>
+                                <option value="expense">Расходы</option>
+                            </select>
+                            <input type="date" id="start-date" class="filter-date">
+                            <input type="date" id="end-date" class="filter-date">
+                            <button id="apply-filters" class="btn btn-outline">Применить</button>
+                            <button id="clear-filters" class="btn btn-outline">Сбросить</button>
+                        </div>
+
+                        <div class="transactions-table-container">
+                            <div class="table-responsive">
+                                <table class="transactions-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Дата</th>
+                                            <th>Тип</th>
+                                            <th>Категория</th>
+                                            <th>Описание</th>
+                                            <th>Счет</th>
+                                            <th>Сумма</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="transactions-table-body">
+                                        <!-- Transactions will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accounts Page -->
+                <div id="accounts-page" class="page">
+                    <div class="page-header">
+                        <h2>Счета</h2>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" id="add-account-btn">
+                                <i class="fas fa-plus"></i>
+                                <span class="btn-text">Добавить счет</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="accounts-grid" id="accounts-grid">
+                        <!-- Accounts will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Categories Page -->
+                <div id="categories-page" class="page">
+                    <div class="page-header">
+                        <h2>Категории</h2>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" id="add-category-btn">
+                                <i class="fas fa-plus"></i>
+                                <span class="btn-text">Добавить категорию</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="categories-content" id="categories-content">
+                        <div class="categories-section">
+                            <h3>Доходы</h3>
+                            <div class="categories-grid" id="income-categories">
+                                <!-- Income categories will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="categories-section">
+                            <h3>Расходы</h3>
+                            <div class="categories-grid" id="expense-categories">
+                                <!-- Expense categories will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budgets Page -->
+                <div id="budgets-page" class="page">
+                    <div class="page-header">
+                        <h2>Бюджеты</h2>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" id="add-budget-btn">
+                                <i class="fas fa-plus"></i>
+                                <span class="btn-text">Добавить бюджет</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="budgets-grid" id="budgets-grid">
+                        <!-- Budgets will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Goals Page -->
+                <div id="goals-page" class="page">
+                    <div class="page-header">
+                        <h2>Семейные цели</h2>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" id="add-goal-btn">
+                                <i class="fas fa-plus"></i>
+                                <span class="btn-text">Добавить цель</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="goals-grid" id="goals-grid">
+                        <!-- Goals will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Family Page -->
+                <div id="family-page" class="page">
+                    <div class="page-header">
+                        <h2>Управление семьей</h2>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" id="add-member-btn">
+                                <i class="fas fa-user-plus"></i>
+                                <span class="btn-text">Добавить участника</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Family Info -->
+                    <div class="family-info-card" id="family-info-card">
+                        <div class="family-header">
+                            <h3 id="family-name-display-page">Семья</h3>
+                            <span class="family-status">Активна</span>
+                        </div>
+                        <div class="family-stats">
+                            <div class="stat">
+                                <span>Участников</span>
+                                <strong id="family-members-count">1</strong>
+                            </div>
+                            <div class="stat">
+                                <span>Общий бюджет</span>
+                                <strong id="family-total-budget">0 ₽</strong>
+                            </div>
+                            <div class="stat">
+                                <span>Активных целей</span>
+                                <strong id="family-active-goals">0</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="family-content" id="family-content">
+                        <h3>Участники семьи</h3>
+                        <div class="family-members-grid" id="family-members-grid">
+                            <!-- Family members will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Auth Modals -->
+    <!-- Personal Auth Modal -->
+    <div id="personal-auth-modal" class="modal">
+        <div class="modal-content auth-modal-content">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>Личный кабинет</h2>
+                    <p>Войдите или создайте аккаунт</p>
+                </div>
+                
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-tab="login">Вход</button>
+                    <button class="tab-btn" data-tab="register">Регистрация</button>
+                </div>
+
+                <form id="personal-login-form" class="auth-form active">
+                    <div class="form-group">
+                        <label for="personal-login-email">Email</label>
+                        <input type="email" id="personal-login-email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="personal-login-password">Пароль</label>
+                        <input type="password" id="personal-login-password" placeholder="Введите пароль" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Войти в аккаунт
+                    </button>
+                </form>
+
+                <form id="personal-register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="personal-register-name">Ваше имя</label>
+                        <input type="text" id="personal-register-name" placeholder="Иван Иванов" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="personal-register-email">Email</label>
+                        <input type="email" id="personal-register-email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="personal-register-password">Пароль</label>
+                        <input type="password" id="personal-register-password" placeholder="Не менее 6 символов" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-user-plus"></i>
+                        Создать аккаунт
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Family Auth Modal -->
+    <div id="family-auth-modal" class="modal">
+        <div class="modal-content auth-modal-content">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>Вход в семью</h2>
+                    <p>Войдите в существующую семью</p>
+                </div>
+                
+                <form id="family-auth-form" class="auth-form active">
+                    <div class="form-group">
+                        <label for="family-auth-name">Название семьи</label>
+                        <input type="text" id="family-auth-name" placeholder="Например: Семья Ивановых" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="family-auth-password">Пароль семьи</label>
+                        <input type="password" id="family-auth-password" placeholder="Введите пароль семьи" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-users"></i>
+                        Войти в семью
+                    </button>
+                    <div class="auth-divider">
+                        <span>или</span>
+                    </div>
+                    <button type="button" class="btn btn-outline btn-full" id="create-family-from-auth-btn">
+                        <i class="fas fa-plus"></i>
+                        Создать новую семью
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Family Modal -->
+    <div id="create-family-modal" class="modal">
+        <div class="modal-content auth-modal-content">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>Создать семью</h2>
+                    <p>Создайте новую семью для совместного управления финансами</p>
+                </div>
+                
+                <form id="create-family-form" class="auth-form active">
+                    <div class="form-group">
+                        <label for="create-family-name">Название семьи</label>
+                        <input type="text" id="create-family-name" placeholder="Например: Семья Ивановых" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="create-family-password">Пароль семьи</label>
+                        <input type="password" id="create-family-password" placeholder="Придумайте пароль для семьи" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-family-password">Подтвердите пароль</label>
+                        <input type="password" id="confirm-family-password" placeholder="Повторите пароль" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-users"></i>
+                        Создать семью
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modals -->
+    <!-- Add Transaction Modal -->
+    <div id="transaction-modal" class="modal">
+        <div class="modal-content data-modal-content">
+            <div class="modal-header">
+                <h3>Добавить транзакцию</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="transaction-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Тип</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="type" value="income" checked>
+                                <span>Доход</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="type" value="expense">
+                                <span>Расход</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Сумма (₽)</label>
+                        <input type="number" id="amount" step="0.01" min="0.01" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="category">Категория</label>
+                    <select id="category" required>
+                        <option value="">Выберите категорию</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="account">Счет</label>
+                    <select id="account" required>
+                        <option value="">Выберите счет</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <input type="text" id="description" placeholder="Краткое описание операции">
+                </div>
+                <div class="form-group">
+                    <label for="date">Дата</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Account Modal -->
+    <div id="account-modal" class="modal">
+        <div class="modal-content data-modal-content">
+            <div class="modal-header">
+                <h3>Добавить счет</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="account-form">
+                <div class="form-group">
+                    <label for="account-name">Название счета</label>
+                    <input type="text" id="account-name" placeholder="Например: Основной счет" required>
+                </div>
+                <div class="form-group">
+                    <label for="account-type">Тип счета</label>
+                    <select id="account-type" required>
+                        <option value="cash">Наличные</option>
+                        <option value="bank">Банковский счет</option>
+                        <option value="credit">Кредитная карта</option>
+                        <option value="savings">Накопительный</option>
+                        <option value="investment">Инвестиционный</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="account-balance">Начальный баланс</label>
+                    <input type="number" id="account-balance" step="0.01" value="0" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label for="account-color">Цвет</label>
+                    <input type="color" id="account-color" value="#3B82F6">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Создать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div id="category-modal" class="modal">
+        <div class="modal-content data-modal-content">
+            <div class="modal-header">
+                <h3>Добавить категорию</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="category-form">
+                <div class="form-group">
+                    <label for="category-name">Название категории</label>
+                    <input type="text" id="category-name" placeholder="Например: Продукты" required>
+                </div>
+                <div class="form-group">
+                    <label for="category-type">Тип</label>
+                    <select id="category-type" required>
+                        <option value="income">Доход</option>
+                        <option value="expense">Расход</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category-icon">Иконка</label>
+                    <select id="category-icon" required>
+                        <option value="💰">💰 Зарплата</option>
+                        <option value="💼">💼 Бизнес</option>
+                        <option value="🏠">🏠 Аренда</option>
+                        <option value="🎁">🎁 Подарки</option>
+                        <option value="🛒">🛒 Продукты</option>
+                        <option value="🍽️">🍽️ Рестораны</option>
+                        <option value="🚗">🚗 Транспорт</option>
+                        <option value="🏠">🏠 Жилье</option>
+                        <option value="⚡">⚡ Коммунальные</option>
+                        <option value="👕">👕 Одежда</option>
+                        <option value="💊">💊 Здоровье</option>
+                        <option value="🎮">🎮 Развлечения</option>
+                        <option value="✈️">✈️ Путешествия</option>
+                        <option value="🎓">🎓 Образование</option>
+                        <option value="💝">💝 Подарки</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category-color">Цвет</label>
+                    <input type="color" id="category-color" value="#6B7280">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Создать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Budget Modal -->
+    <div id="budget-modal" class="modal">
+        <div class="modal-content data-modal-content">
+            <div class="modal-header">
+                <h3>Добавить бюджет</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="budget-form">
+                <div class="form-group">
+                    <label for="budget-category">Категория</label>
+                    <select id="budget-category" required>
+                        <option value="">Выберите категорию расходов</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="budget-amount">Сумма бюджета (₽)</label>
+                    <input type="number" id="budget-amount" step="0.01" min="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="budget-period">Период</label>
+                    <input type="month" id="budget-period" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Создать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Goal Modal -->
+    <div id="goal-modal" class="modal">
+        <div class="modal-content data-modal-content">
+            <div class="modal-header">
+                <h3>Добавить цель</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="goal-form">
+                <div class="form-group">
+                    <label for="goal-name">Название цели</label>
+                    <input type="text" id="goal-name" placeholder="Например: Новый автомобиль" required>
+                </div>
+                <div class="form-group">
+                    <label for="goal-amount">Целевая сумма (₽)</label>
+                    <input type="number" id="goal-amount" step="0.01" min="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="goal-deadline">Срок выполнения</label>
+                    <input type="date" id="goal-deadline">
+                </div>
+                <div class="form-group">
+                    <label for="goal-description">Описание</label>
+                    <textarea id="goal-description" placeholder="Описание цели (необязательно)"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Создать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Member Modal -->
+    <div id="member-modal" class="modal">
+        <div class="modal-content data-modal-content">
+            <div class="modal-header">
+                <h3>Добавить участника</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="member-form">
+                <div class="form-group">
+                    <label for="member-name">Имя участника</label>
+                    <input type="text" id="member-name" placeholder="Имя и фамилия" required>
+                </div>
+                <div class="form-group">
+                    <label for="member-email">Email</label>
+                    <input type="email" id="member-email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="member-role">Роль</label>
+                    <select id="member-role" required>
+                        <option value="member">Участник</option>
+                        <option value="admin">Администратор</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Funds to Goal Modal -->
+    <div id="add-funds-modal" class="modal">
+        <div class="modal-content data-modal-content">
+            <div class="modal-header">
+                <h3>Пополнить цель</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="add-funds-form">
+                <div class="form-group">
+                    <label for="funds-amount">Сумма пополнения (₽)</label>
+                    <input type="number" id="funds-amount" step="0.01" min="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="funds-account">Счет для списания</label>
+                    <select id="funds-account" required>
+                        <option value="">Выберите счет</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="funds-description">Описание</label>
+                    <input type="text" id="funds-description" placeholder="Например: Вклад на отпуск">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Пополнить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Account Confirmation Modal -->
+    <div id="delete-account-modal" class="modal">
+        <div class="modal-content data-modal-content">
+            <div class="modal-header">
+                <h3>Удаление аккаунта</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Вы уверены, что хотите удалить свой аккаунт? Это действие нельзя отменить. Все ваши данные будут безвозвратно удалены.</p>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel">Отмена</button>
+                    <button type="button" class="btn btn-danger" id="confirm-delete-account">Удалить аккаунт</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p class="loading-message">Загрузка...</p>
+        </div>
+    </div>
+
+    <!-- Alert Messages -->
+    <div class="alert-message hidden">
+        <div class="alert-content">
+            <span class="alert-text"></span>
+            <button class="alert-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
