@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FamilyFinance - Умный учет семейных финансов</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <section class="hero">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="#" class="nav-brand" id="scroll-to-top">
+                        <i class="fas fa-piggy-bank"></i>
+                        <span>FamilyFinance</span>
+                    </a>
+                    <div class="nav-actions">
+                        <button class="nav-toggle" id="nav-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="nav-menu" id="nav-menu">
+                            <a href="#features" class="nav-link">Возможности</a>
+                            <a href="#about" class="nav-link">О проекте</a>
+                            <button class="btn btn-outline nav-btn" id="nav-login-btn">Войти</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Управляйте семейными 
+                        <span class="gradient-text">финансами</span> 
+                        вместе
+                    </h1>
+                    <p class="hero-description">
+                        Простой и удобный способ вести общий бюджет, контролировать расходы 
+                        и достигать финансовых целей всей семьей
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" id="start-free-btn">
+                            <i class="fas fa-rocket"></i>
+                            Начать бесплатно
+                        </button>
+                        <button class="btn btn-outline" id="family-access-btn">
+                            <i class="fas fa-users"></i>
+                            Войти в семью
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Бесплатно</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Доступность</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Семей</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="dashboard-preview">
+                        <div class="preview-header">
+                            <div class="preview-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="preview-content">
+                            <div class="preview-stats">
+                                <div class="preview-stat">
+                                    <span>Доходы</span>
+                                    <strong>45,250 ₽</strong>
+                                </div>
+                                <div class="preview-stat">
+                                    <span>Расходы</span>
+                                    <strong>28,750 ₽</strong>
+                                </div>
+                                <div class="preview-stat">
+                                    <span>Баланс</span>
+                                    <strong class="balance-positive">16,500 ₽</strong>
+                                </div>
+                            </div>
+                            <div class="preview-chart">
+                                <div class="chart-bar income-bar">
+                                    <div class="chart-value">45K</div>
+                                </div>
+                                <div class="chart-bar expense-bar">
+                                    <div class="chart-value">29K</div>
+                                </div>
+                                <div class="chart-bar budget-bar">
+                                    <div class="chart-value">17K</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Все необходимое для управления финансами</h2>
+                    <p>Мощные инструменты для контроля вашего семейного бюджета</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3>Учет операций</h3>
+                        <p>Легко добавляйте доходы и расходы, категоризируйте их и отслеживайте в реальном времени</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <h3>Множество счетов</h3>
+                        <p>Управляйте наличными, банковскими счетами, кредитными картами и накоплениями</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Визуальная аналитика</h3>
+                        <p>Наглядные графики и отчеты помогут понять структуру расходов и доходов</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Совместный доступ</h3>
+                        <p>Приглашайте членов семьи для ведения общего бюджета с разными уровнями доступа</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Планирование бюджета</h3>
+                        <p>Устанавливайте лимиты по категориям и отслеживайте их выполнение</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Доступ везде</h3>
+                        <p>Работайте с любого устройства через современный веб-интерфейс</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>О проекте</h2>
+                    <p>FamilyFinance - это современное решение для управления семейными финансами</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Наша миссия</h3>
+                        <p>Мы помогаем семьям эффективно управлять своими финансами, достигать финансовых целей и улучшать качество жизни через прозрачность и контроль над расходами.</p>
+                        
+                        <h3>Почему выбирают нас</h3>
+                        <ul>
+                            <li>Простой и интуитивно понятный интерфейс</li>
+                            <li>Полная конфиденциальность ваших данных</li>
+                            <li>Совместный доступ для всех членов семьи</li>
+                            <li>Мощные инструменты аналитики</li>
+                            <li>Кросс-платформенная доступность</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-visual">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Готовы взять финансы под контроль?</h2>
+                    <p>Присоединяйтесь к тысячам семей, которые уже управляют своим бюджетом с FamilyFinance</p>
+                    <button class="btn btn-primary" id="cta-start-btn">
+                        <i class="fas fa-user-plus"></i>
+                        Начать сейчас
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="brand">
+                            <i class="fas fa-piggy-bank"></i>
+                            <span>FamilyFinance</span>
+                        </div>
+                        <p>Умный учет семейных финансов</p>
+                    </div>
+                    <div class="footer-links">
+                        <div class="link-group">
+                            <h4>Продукт</h4>
+                            <a href="#features">Возможности</a>
+                            <a href="#about">О проекте</a>
+                        </div>
+                        <div class="link-group">
+                            <h4>Поддержка</h4>
+                            <a href="#" id="support-link">Помощь</a>
+                            <a href="#" id="contacts-link">Контакты</a>
+                        </div>
+                        <div class="link-group">
+                            <h4>Legal</h4>
+                            <a href="#" id="privacy-link">Политика конфиденциальности</a>
+                            <a href="#" id="terms-link">Условия использования</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; <span id="current-year">2025</span> FamilyFinance. Все права защищены.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Модальное окно авторизации -->
+        <div id="auth-modal" class="modal">
+            <div class="modal-content centered-modal">
+                <button class="modal-close" id="auth-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <h2>Добро пожаловать!</h2>
+                        <p>Войдите или создайте аккаунт</p>
+                    </div>
+                    
+                    <div class="auth-tabs">
+                        <button class="tab-btn active" data-tab="login" id="login-tab-btn">Вход</button>
+                        <button class="tab-btn" data-tab="register" id="register-tab-btn">Регистрация</button>
+                    </div>
+
+                    <form id="login-form" class="auth-form active">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Пароль</label>
+                            <input type="password" id="login-password" placeholder="Введите пароль" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Войти в аккаунт
+                        </button>
+                        <div class="auth-divider">
+                            <span>или</span>
+                        </div>
+                        <button type="button" class="btn btn-outline btn-full" id="demo-btn">
+                            <i class="fas fa-play"></i>
+                            Попробовать демо
+                        </button>
+                    </form>
+
+                    <form id="register-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="register-name">Ваше имя</label>
+                            <input type="text" id="register-name" placeholder="Иван Иванов" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Пароль</label>
+                            <input type="password" id="register-password" placeholder="Не менее 6 символов" required minlength="6">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-user-plus"></i>
+                            Создать аккаунт
+                        </button>
+                        <div class="auth-divider">
+                            <span>или</span>
+                        </div>
+                        <button type="button" class="btn btn-outline btn-full" id="demo-btn-2">
+                            <i class="fas fa-play"></i>
+                            Попробовать демо
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно доступа к семье -->
+        <div id="family-access-modal" class="modal">
+            <div class="modal-content centered-modal">
+                <button class="modal-close" id="family-access-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <h2>Доступ к семье</h2>
+                        <p>Создайте новую семью или войдите в существующую</p>
+                    </div>
+                    
+                    <div class="family-options">
+                        <div class="family-option-card" id="create-family-option">
+                            <div class="family-option-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <h3>Создать семью</h3>
+                            <p>Создайте новую семью для совместного управления финансами</p>
+                        </div>
+                        
+                        <div class="family-option-card" id="join-family-option">
+                            <div class="family-option-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Войти в семью</h3>
+                            <p>Войдите в существующую семью с помощью названия и пароля</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно создания семьи -->
+        <div id="create-family-modal" class="modal">
+            <div class="modal-content centered-modal">
+                <button class="modal-close" id="create-family-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <h2>Создать семью</h2>
+                        <p>Создайте новую семью для совместного управления финансами</p>
+                    </div>
+                    
+                    <form id="create-family-form" class="auth-form active">
+                        <div class="form-group">
+                            <label for="create-family-name">Название семьи</label>
+                            <input type="text" id="create-family-name" placeholder="Например: Семья Ивановых" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="create-family-password">Пароль семьи</label>
+                            <input type="password" id="create-family-password" placeholder="Придумайте пароль для семьи" required minlength="4">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-family-password">Подтвердите пароль</label>
+                            <input type="password" id="confirm-family-password" placeholder="Повторите пароль" required minlength="4">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-users"></i>
+                            Создать семью
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно входа в семью -->
+        <div id="join-family-modal" class="modal">
+            <div class="modal-content centered-modal">
+                <button class="modal-close" id="join-family-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <h2>Войти в семью</h2>
+                        <p>Войдите в существующую семью</p>
+                    </div>
+                    
+                    <form id="join-family-form" class="auth-form active">
+                        <div class="form-group">
+                            <label for="join-family-name">Название семьи</label>
+                            <input type="text" id="join-family-name" placeholder="Например: Семья Ивановых" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="join-family-password">Пароль семьи</label>
+                            <input type="password" id="join-family-password" placeholder="Введите пароль семьи" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-users"></i>
+                            Войти в семью
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно поддержки -->
+        <div id="support-modal" class="modal">
+            <div class="modal-content centered-modal">
+                <button class="modal-close" id="support-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <h2>Поддержка</h2>
+                        <p>Свяжитесь с нами</p>
+                    </div>
+                    <div class="support-info">
+                        <div class="support-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3>Email</h3>
+                                <p>famiilyfinance@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="support-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h3>Телефон</h3>
+                                <p>+7 (903) 072-49-95</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно правовой информации -->
+        <div id="legal-modal" class="modal">
+            <div class="modal-content centered-modal">
+                <button class="modal-close" id="legal-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <h2>Правовая информация</h2>
+                    </div>
+                    <div class="legal-content">
+                        <div class="legal-section">
+                            <h3>Политика конфиденциальности</h3>
+                            <p>Мы серьезно относимся к защите ваших персональных данных. Все финансовые данные хранятся локально в вашем браузере и зашифрованы.</p>
+                        </div>
+                        <div class="legal-section">
+                            <h3>Условия использования</h3>
+                            <p>FamilyFinance предоставляется бесплатно для личного использования. Приложение не несет ответственности за финансовые решения пользователей.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Оверлей загрузки -->
+        <div class="loading-overlay hidden">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p class="loading-message">Загрузка...</p>
+            </div>
+        </div>
+
+        <!-- Уведомления -->
+        <div class="alert-message hidden">
+            <div class="alert-content">
+                <span class="alert-text"></span>
+                <button class="alert-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
